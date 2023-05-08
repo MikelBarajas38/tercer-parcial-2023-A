@@ -36,13 +36,7 @@ public class ShoppingCart {
     }
 
     public List<ShoppingItem> getItems() {
-        List<ShoppingItem> itemsInList = new ArrayList<>();
-        Iterator<ShoppingItem> iterator = shoppingCartList.iterator();
-        while(iterator.hasNext()) {
-            ShoppingItem item = iterator.next();
-            itemsInList.add(item);
-        }
-        return itemsInList;
+        return shoppingCartList;
     }
 
     public Collection<ShoppingItem> getDistinctItems() {
