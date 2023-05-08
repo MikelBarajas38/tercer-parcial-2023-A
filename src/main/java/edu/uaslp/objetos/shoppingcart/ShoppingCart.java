@@ -5,7 +5,7 @@ import java.util.*;
 public class ShoppingCart {
 
     private ShoppingItemCatalog shoppingItemCatalog;
-    private List<String> shoppingCartList;
+    private List<ShoppingItem> shoppingCartList;
 
     public ShoppingCart(ShoppingItemCatalog shoppingItemCatalog) {
         this.shoppingItemCatalog = shoppingItemCatalog;
@@ -14,14 +14,14 @@ public class ShoppingCart {
 
     public void add(String code) throws ItemNotFoundException{
         ShoppingItem testItem = shoppingItemCatalog.getItem(code);
-        shoppingCartList.add(code);
+        shoppingCartList.add(testItem);
     }
 
     public int getTotalCostInCents() {
-        Iterator<String> iterator = shoppingCartList.iterator();
+        Iterator<ShoppingItem> iterator = shoppingCartList.iterator();
         int totalCost = 0;
         while(iterator.hasNext()) {
-            ShoppingItem item = shoppingItemCatalog.getItem(iterator.next());
+            ShoppingItem item = iterator.next();
             totalCost += item.getUnitCostInCents();
         }
         return totalCost;
@@ -37,9 +37,9 @@ public class ShoppingCart {
 
     public List<ShoppingItem> getItems() {
         List<ShoppingItem> itemsInList = new ArrayList<>();
-        Iterator<String> iterator = shoppingCartList.iterator();
+        Iterator<ShoppingItem> iterator = shoppingCartList.iterator();
         while(iterator.hasNext()) {
-            ShoppingItem item = shoppingItemCatalog.getItem(iterator.next());
+            ShoppingItem item = iterator.next();
             itemsInList.add(item);
         }
         return itemsInList;
@@ -49,9 +49,9 @@ public class ShoppingCart {
         Set<ShoppingItem> distinctItems = new HashSet<>();
         List<ShoppingItem> distinctItemsList = new ArrayList<>();
 
-        Iterator<String> iterator = shoppingCartList.iterator();
+        Iterator<ShoppingItem> iterator = shoppingCartList.iterator();
         while(iterator.hasNext()) {
-            ShoppingItem item = shoppingItemCatalog.getItem(iterator.next());
+            ShoppingItem item = iterator.next();
             if(!distinctItems.contains(item)) {
                 distinctItemsList.add(item);
             }
