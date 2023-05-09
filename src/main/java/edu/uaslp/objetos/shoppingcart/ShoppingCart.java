@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ShoppingCart {
 
-    private ShoppingItemCatalog shoppingItemCatalog;
+    private final ShoppingItemCatalog shoppingItemCatalog;
     private List<ShoppingItem> shoppingCartList;
 
     public ShoppingCart(ShoppingItemCatalog shoppingItemCatalog) {

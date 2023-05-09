@@ -1,5 +1,7 @@
 package edu.uaslp.objetos.shoppingcart;
 
+import java.util.Objects;
+
 public final class ShoppingItem {
 
     private final String name;
@@ -34,4 +36,16 @@ public final class ShoppingItem {
         return unitCostInCents / 100.0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingItem item = (ShoppingItem) o;
+        return unitCostInCents == item.unitCostInCents && Objects.equals(name, item.name) && Objects.equals(description, item.description) && Objects.equals(code, item.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, code, unitCostInCents);
+    }
 }
